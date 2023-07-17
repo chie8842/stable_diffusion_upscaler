@@ -37,3 +37,6 @@ options:
   --eta ETA             eta
   --seed SEED           seed
 ```
+
+## Original Colab Notebook for Stable Diffusion Upscaler Demo
+https://colab.research.google.com/drive/1o1qYJcFeywzCIdkfKJy7cTpgZTCM2EI4
