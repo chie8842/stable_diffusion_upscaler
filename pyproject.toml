@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "stable-diffusion-upscaler"
+version = "0.1.0"
+description = ""
+authors = ["chie8842 <chie8842@gmail.com>"]
+readme = "README.md"
+packages = [{include = "stable_diffusion_upscaler"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Pillow = "<9.3.0"
+ftfy = "^6.1.1"
+einops = "^0.6.1"
+braceexpand = "^0.1.7"
+requests = "^2.31.0"
+transformers = "^4.30.2"
+clip = "^0.2.0"
+omegaconf = "^2.3.0"
+pytorch-lightning = "^2.0.5"
+kornia = "^0.6.12"
+k-diffusion = "^0.0.15"
+huggingface-hub = {git = "https://github.com/huggingface/huggingface_hub"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
