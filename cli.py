@@ -32,7 +32,7 @@ from generate_image import generate_image
 
 
 def parse_args(input_args=None):
-    parser = argparse.ArgumentParser(description="Simple example of a training script.")
+    parser = argparse.ArgumentParser(description="Generate image with stable diffusion upscaler.")
     parser.add_argument(
         "--image_url",
         type=str,
@@ -169,7 +169,7 @@ def main(args):
     model_up = model_up.to(device)
   
     # Not strictly required but can subtly affect the upscaling result.
-    prompt = "asian woman sitting on the beach"
+    prompt = args.prompt
     num_samples = args.num_samples
     batch_size = args.batch_size 
     
