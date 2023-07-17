@@ -28,6 +28,7 @@ import k_diffusion as K
 from fetch_model import *
 from functions import *
 from load_model import load_model_from_config
+from run_model import run
 from generate_image import generate_image
 
 

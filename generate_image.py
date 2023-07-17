@@ -8,6 +8,6 @@ pipe = StableDiffusionPipeline.from_pretrained(
 pipe = pipe.to('cuda')
 
 def generate_image(prompt):
-    image = pipe(prompt).image[0]
+    image = pipe(prompt).images[0]
     return image
 
