@@ -1,4 +1,8 @@
+import k_diffusion as K
+import numpy as np
+import time
 import torch
+from pytorch_lightning import seed_everything
 from torchvision.transforms import functional as TF
 from functions import *
 from save_images import *
@@ -9,11 +13,14 @@ SD_F = 8 # Latent patch size (pixels per latent)
 SD_Q = 0.18215 # sd_model.scale_factor; scaling for latents in first stage models
 
 @torch.no_grad()
-def condition_up(prompts):
+def condition_up(prompts, text_encoder_up, tok_up):
   return text_encoder_up(tok_up(prompts))
 
 @torch.no_grad()
-def run(input_image, seed):
+def run(
+  input_image, seed, batch_size, prompt, noise_aug_level, device, decoder, 
+  guidance_scale, num_samples, noise_aug_type, sampler, steps, tol_scale, eta,
+  model_up, vae_model_840k, vae_model_560k):
   timestamp = int(time.time())
   if not seed:
     print('No seed was provided, using the current time.')
@@ -21,8 +28,11 @@ def run(input_image, seed):
   print(f'Generating with seed={seed}')
   seed_everything(seed)
 
-  uc = condition_up(batch_size * [""])
-  c = condition_up(batch_size * [prompt])
+  tok_up = CLIPTokenizerTransform()
+  text_encoder_up = CLIPEmbedder(device=device)
+
+  uc = condition_up(batch_size * [""], text_encoder_up, tok_up)
+  c = condition_up(batch_size * [prompt], text_encoder_up, tok_up)
 
   if decoder == 'finetuned_840k':
     vae = vae_model_840k
@@ -74,7 +84,7 @@ def run(input_image, seed):
 
 
     # Display and save samples.
-    display(TF.to_pil_image(make_grid(pixels, batch_size)))
+    # display(TF.to_pil_image(make_grid(pixels, batch_size)))
     for j in range(pixels.shape[0]):
       img = TF.to_pil_image(pixels[j])
       save_image(img, timestamp=timestamp, index=image_id, prompt=prompt, seed=seed)

@@ -28,6 +28,7 @@ import k_diffusion as K
 from fetch_model import *
 from functions import *
 from load_model import load_model_from_config
+from generate_image import generate_image
 
 
 def parse_args(input_args=None):
@@ -167,9 +168,6 @@ def main(args):
     vae_model_560k = vae_model_560k.to(device)
     model_up = model_up.to(device)
   
-    tok_up = CLIPTokenizerTransform()
-    text_encoder_up = CLIPEmbedder(device=device)
-  
     # Not strictly required but can subtly affect the upscaling result.
     prompt = "asian woman sitting on the beach"
     num_samples = args.num_samples
@@ -196,8 +194,12 @@ def main(args):
     # Set seed to 0 to use the current time:
     seed = args.seed 
 
-    input_image = Image.open(fetch(args.image_url))
-    run(input_image, seed)
+    #input_image = Image.open(fetch(args.image_url)).convert('RGB')
+    input_image = generate_image(prompt)
+    run(
+        input_image, seed, batch_size, prompt, noise_aug_level, device, decoder, 
+        guidance_scale, num_samples, noise_aug_type, sampler, steps, tol_scale,
+        eta, model_up, vae_model_840k, vae_model_560k)
 
 if __name__ == "__main__":
     args = parse_args()

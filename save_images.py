@@ -1,13 +1,13 @@
 import os
+import re
 
-def save_image_drive(save_to_drive, save_location):
-  # save_to_drive = False
-  # save_location = 'stable-diffusion-upscaler/%T-%I-%P.png'
+save_to_drive = False
+save_location = 'stable-diffusion-upscaler/%T-%I-%P.png'
 
-  if save_to_drive:
-    from google.colab import drive
-    drive.mount('/content/drive')
-    save_location = '/content/drive/MyDrive/' + save_location
+if save_to_drive:
+  from google.colab import drive
+  drive.mount('/content/drive')
+  save_location = '/content/drive/MyDrive/' + save_location
 
 def clean_prompt(prompt):
   badchars = re.compile(r'[/\\]')
