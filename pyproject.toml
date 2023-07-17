@@ -20,6 +20,8 @@ pytorch-lightning = "^2.0.5"
 kornia = "^0.6.12"
 k-diffusion = "^0.0.15"
 huggingface-hub = {git = "https://github.com/huggingface/huggingface_hub"}
+ldm-fix = "^1.0.1"
+taming-transformers-rom1504 = "^0.0.6"
 
 [build-system]
 requires = ["poetry-core"]

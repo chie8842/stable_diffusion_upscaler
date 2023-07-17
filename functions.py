@@ -1,4 +1,5 @@
 import torch
+from torch import nn
 
 class CFGUpscaler(nn.Module):
     def __init__(self, model, uc, cond_scale):

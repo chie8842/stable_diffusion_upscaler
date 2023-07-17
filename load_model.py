@@ -3,7 +3,7 @@ from ldm.util import instantiate_from_config
 from omegaconf import OmegaConf
 
 
-def load_model_from_config(config, ckpt):
+def load_model_from_config(config, ckpt, cpu, device):
     print(f"Loading model from {ckpt}")
     pl_sd = torch.load(ckpt, map_location="cpu")
     sd = pl_sd["state_dict"]

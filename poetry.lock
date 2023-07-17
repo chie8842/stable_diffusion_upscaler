@@ -775,6 +775,17 @@ lint = ["pre-commit (>=3.3)"]
 test = ["pytest (>=7.4)", "pytest-cov (>=4.1)"]
 
 [[package]]
+name = "ldm-fix"
+version = "1.0.1"
+description = "LDM not exist fix"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "ldm-fix-1.0.1.tar.gz", hash = "sha256:5151ef58caec4b6607e2d52392ec68192a7712cf48cd0856be932a2777971504"},
+    {file = "ldm_fix-1.0.1-py3-none-any.whl", hash = "sha256:7e44c23e840b50ba19e6fcb1a138f187d60d06b3897efd69092ce78ce4a3f6c3"},
+]
+
+[[package]]
 name = "lightning-utilities"
 version = "0.9.0"
 description = "PyTorch Lightning Sample project."
@@ -1769,6 +1780,25 @@ files = [
 mpmath = ">=0.19"
 
 [[package]]
+name = "taming-transformers-rom1504"
+version = "0.0.6"
+description = "Taming Transformers for High-Resolution Image Synthesis"
+optional = false
+python-versions = "*"
+files = [
+    {file = "taming-transformers-rom1504-0.0.6.tar.gz", hash = "sha256:73fe5fc1108accee4236ee6976e0987ab236afad0af06cb9f037641a908d2c32"},
+    {file = "taming_transformers_rom1504-0.0.6-py3-none-any.whl", hash = "sha256:051b5804c58caa247bcd51d17ddb525b4d5f892a29d42dc460f40e3e9e34e5d8"},
+]
+
+[package.dependencies]
+numpy = "*"
+omegaconf = ">=2.0.0"
+pytorch-lightning = ">=1.0.8"
+torch = "*"
+torchvision = "*"
+tqdm = "*"
+
+[[package]]
 name = "tifffile"
 version = "2023.7.10"
 description = "Read and write TIFF files"
@@ -2242,4 +2272,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "9b8bf15469dca3b99e85123413f2a8b22f1cb19d9510dafbf1ed6c06b770c62e"
+content-hash = "af1db62c26d6eed3e28250d061d5e6e5a766738246f24811bb0fa3a8a6a33ce6"

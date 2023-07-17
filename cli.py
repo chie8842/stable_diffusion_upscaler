@@ -133,7 +133,7 @@ def parse_args(input_args=None):
 
 
 def main(args):
-    save_to_drive(save_to_drive, save_location)
+    #save_to_drive(save_to_drive, save_location)
   
     model_up = make_upscaler_model(
             fetch('https://models.rivershavewings.workers.dev/config_laion_text_cond_latent_upscaler_2.json'),
@@ -153,10 +153,14 @@ def main(args):
     #    sd_model_path)
     vae_model_840k = load_model_from_config(
             "latent-diffusion/models/first_stage_models/kl-f8/config.yaml",
-            vae_840k_model_path)
+            vae_840k_model_path,
+            cpu,
+            device)
     vae_model_560k = load_model_from_config(
             "latent-diffusion/models/first_stage_models/kl-f8/config.yaml", 
-            vae_560k_model_path)
+            vae_560k_model_path,
+            cpu,
+            device)
   
     # sd_model = sd_model.to(device)
     vae_model_840k = vae_model_840k.to(device)
@@ -191,6 +195,9 @@ def main(args):
     
     # Set seed to 0 to use the current time:
     seed = args.seed 
+
+    input_image = Image.open(fetch(args.image_url))
+    run(input_image, seed)
 
 if __name__ == "__main__":
     args = parse_args()

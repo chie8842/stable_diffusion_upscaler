@@ -1,9 +1,12 @@
+import hashlib
 import huggingface_hub
 import os
+import subprocess
 import torch
 import k_diffusion as K
+import torch.nn.functional as F
+from torch import nn
 from requests.exceptions import HTTPError
-from torch.nn.functional as F
 
 
 class NoiseLevelAndTextConditionedUpscaler(nn.Module):
@@ -32,7 +35,8 @@ def fetch(url_or_path):
     if not os.path.exists(f'cache/{cachename}'):
       os.makedirs('tmp', exist_ok=True)
       os.makedirs('cache', exist_ok=True)
-      !curl '{url_or_path}' -o 'tmp/{cachename}'
+      subprocess.call(['curl', url_or_path, '-o', f'tmp/{cachename}'])
+      #!curl '{url_or_path}' -o 'tmp/{cachename}'
       os.rename(f'tmp/{cachename}', f'cache/{cachename}')
     return f'cache/{cachename}'
   return url_or_path
